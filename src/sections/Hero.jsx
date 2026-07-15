@@ -235,7 +235,7 @@ export default function Hero() {
               key={s.label}
               href={s.href}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={s.label}
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}

@@ -137,6 +137,8 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       required
+                      autoComplete="name"
+                      type="text"
                       placeholder="Your Name"
                       className="form-input"
                       style={{ width: '100%', padding: '10px 14px', borderRadius: 8, fontSize: '0.88rem' }}
@@ -160,6 +162,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       required
+                      autoComplete="email"
                       type="email"
                       placeholder="you@example.com"
                       className="form-input"
@@ -184,6 +187,7 @@ export default function Contact() {
                       value={form.message}
                       onChange={handleChange}
                       required
+                      autoComplete="off"
                       rows={5}
                       placeholder="What's on your mind?"
                       className="form-input"
@@ -330,7 +334,7 @@ export default function Contact() {
                   key={s.label}
                   href={s.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, x: 16 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.06 }}

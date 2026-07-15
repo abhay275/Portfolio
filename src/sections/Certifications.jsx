@@ -96,7 +96,7 @@ function CertCard({ cert, index }) {
             <a
               href={cert.verifyUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label={`Verify ${cert.title} certification`}
               style={{
                 display: 'inline-flex',

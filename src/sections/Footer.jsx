@@ -136,7 +136,7 @@ export default function Footer() {
                       key={s.label}
                       href={s.href}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       title={s.label}
                       aria-label={s.label}
                       style={{

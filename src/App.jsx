@@ -10,17 +10,18 @@ import {
 import Navbar from './components/Navbar';
 import ParticleNetwork from './components/3d/ParticleNetwork';
 
-// Sections
 import TerminalIntro from './sections/TerminalIntro';
 import Hero from './sections/Hero';
 import About from './sections/About';
-import Skills from './sections/Skills';
-import Projects from './sections/Projects';
-import Experience from './sections/Experience';
-import Certifications from './sections/Certifications';
-import Stats from './sections/Stats';
-import Contact from './sections/Contact';
-import Footer from './sections/Footer';
+
+// Lazy-loaded Sections (Below the fold)
+const Skills = lazy(() => import('./sections/Skills'));
+const Projects = lazy(() => import('./sections/Projects'));
+const Experience = lazy(() => import('./sections/Experience'));
+const Certifications = lazy(() => import('./sections/Certifications'));
+const Stats = lazy(() => import('./sections/Stats'));
+const Contact = lazy(() => import('./sections/Contact'));
+const Footer = lazy(() => import('./sections/Footer'));
 
 export default function App() {
   const [phase, setPhase] = useState('loading'); // loading | terminal | main
@@ -70,15 +71,19 @@ export default function App() {
             <main style={{ position: 'relative', zIndex: 1 }}>
               <Hero />
               <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Certifications />
-              <Stats />
-              <Contact />
+              <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+                <Skills />
+                <Projects />
+                <Experience />
+                <Certifications />
+                <Stats />
+                <Contact />
+              </Suspense>
             </main>
 
-            <Footer />
+            <Suspense fallback={null}>
+              <Footer />
+            </Suspense>
           </motion.div>
         )}
       </AnimatePresence>

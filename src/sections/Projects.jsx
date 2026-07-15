@@ -157,7 +157,7 @@ function FlagshipCard({ project }) {
             <a
               href={project.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="btn-outline"
               aria-label={`View ${project.title} source code on GitHub`}
               style={{
@@ -407,7 +407,7 @@ function ProjectCard({ project, index }) {
           <a
             href={project.github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label={`View ${project.title} on GitHub`}
             style={{
               display: 'inline-flex',
