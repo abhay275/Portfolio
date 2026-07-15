@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Global UI
@@ -14,30 +14,21 @@ import ParticleNetwork from './components/3d/ParticleNetwork';
 import TerminalIntro from './sections/TerminalIntro';
 import Hero from './sections/Hero';
 import About from './sections/About';
-import TechStack from './sections/TechStack';
+import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
+import Certifications from './sections/Certifications';
 import Stats from './sections/Stats';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 
 export default function App() {
   const [phase, setPhase] = useState('loading'); // loading | terminal | main
-  const [isDark, setIsDark] = useState(true);
   const [cmdOpen, setCmdOpen] = useState(false);
 
   // Loading → Terminal → Main
   const handleLoadingComplete = () => setPhase('terminal');
   const handleTerminalComplete = () => setPhase('main');
-
-  // Theme toggle
-  const toggleTheme = () => {
-    setIsDark(d => {
-      const next = !d;
-      document.documentElement.classList.toggle('light', !next);
-      return next;
-    });
-  };
 
   // Command palette keyboard shortcut
   useEffect(() => {
@@ -74,18 +65,15 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <Navbar
-              isDark={isDark}
-              toggleTheme={toggleTheme}
-              onOpenPalette={() => setCmdOpen(true)}
-            />
+            <Navbar onOpenPalette={() => setCmdOpen(true)} />
 
             <main style={{ position: 'relative', zIndex: 1 }}>
               <Hero />
               <About />
-              <TechStack />
+              <Skills />
               <Projects />
               <Experience />
+              <Certifications />
               <Stats />
               <Contact />
             </main>

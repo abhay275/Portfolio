@@ -1,112 +1,111 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Brain, Code2, Shield, Rocket, Zap, Globe } from 'lucide-react';
+import { Shield, Code2, Cloud, Brain, BookOpen, Target } from 'lucide-react';
 
-const cards = [
+const focusAreas = [
   {
-    icon: Brain,
-    title: 'AI & Machine Learning',
-    description: 'Designing neural networks, training models, and deploying intelligent systems that learn and adapt.',
-    color: '#00d4ff',
-    glow: 'rgba(0,212,255,0.15)',
+    icon: Shield,
+    title: 'Cybersecurity',
+    description: 'Implementing threat detection, incident response workflows, and securing systems against advanced attack vectors.',
+    accent: '#3B82F6',
   },
   {
     icon: Code2,
     title: 'Full Stack Development',
-    description: 'Building end-to-end web applications from pixel-perfect UIs to robust backend APIs and databases.',
-    color: '#7c3aed',
-    glow: 'rgba(124,58,237,0.15)',
+    description: 'Architecting end-to-end applications with modern frameworks, focusing on scalable APIs and responsive UIs.',
+    accent: '#06B6D4',
   },
   {
-    icon: Shield,
-    title: 'Cybersecurity',
-    description: 'Exploring ethical hacking, secure coding practices, and building systems resilient to modern threats.',
-    color: '#39ff14',
-    glow: 'rgba(57,255,20,0.15)',
+    icon: Cloud,
+    title: 'Cloud & DevOps',
+    description: 'Deploying highly available infrastructure on cloud platforms with automated CI/CD pipelines and security-first principles.',
+    accent: '#22C55E',
   },
   {
-    icon: Rocket,
-    title: 'Scalable Products',
-    description: 'Architecting and shipping products that handle real-world load with clean, maintainable code.',
-    color: '#ff006e',
-    glow: 'rgba(255,0,110,0.15)',
-  },
-  {
-    icon: Zap,
-    title: 'Problem Solving',
-    description: 'Passionate about algorithmic challenges, competitive programming, and crafting elegant solutions.',
-    color: '#06ffa5',
-    glow: 'rgba(6,255,165,0.15)',
-  },
-  {
-    icon: Globe,
-    title: 'Open Source',
-    description: 'Contributing to the open source community and building tools that empower developers worldwide.',
-    color: '#f59e0b',
-    glow: 'rgba(245,158,11,0.15)',
+    icon: Brain,
+    title: 'AI & Machine Learning',
+    description: 'Leveraging machine learning for anomaly detection and data analysis to solve complex operational challenges.',
+    accent: '#F59E0B',
   },
 ];
 
-function Card({ card, index }) {
+const journeyItems = [
+  {
+    year: '2022',
+    title: 'Started B.Tech in Computer Science',
+    description: 'Built foundational expertise in data structures, algorithms, and systems design.',
+    icon: BookOpen,
+  },
+  {
+    year: '2023',
+    title: 'Security Engineering Focus',
+    description: 'Transitioned focus to security engineering, mastering network defense, threat modeling, and secure coding practices.',
+    icon: Shield,
+  },
+  {
+    year: '2024',
+    title: 'Shipping Production Systems',
+    description: 'Engineered and deployed production-grade security tooling and web applications, collaborating in national-level technical events.',
+    icon: Target,
+  },
+];
+
+function FocusCard({ area, index }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const Icon = card.icon;
+  const Icon = area.icon;
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="glass-card"
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="card card-interactive"
       style={{
-        borderRadius: 16,
         padding: '28px',
         position: 'relative',
         overflow: 'hidden',
-        cursor: 'default',
       }}
     >
-      {/* Background glow */}
+      {/* Top accent line */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         height: 1,
-        background: `linear-gradient(90deg, transparent, ${card.color}, transparent)`,
-        opacity: 0.7,
-      }} />
-      <div style={{
-        position: 'absolute',
-        top: -30,
-        right: -30,
-        width: 100,
-        height: 100,
-        background: `radial-gradient(circle, ${card.glow} 0%, transparent 70%)`,
-        pointerEvents: 'none',
+        background: `linear-gradient(90deg, transparent, ${area.accent}40, transparent)`,
       }} />
 
       <div style={{
-        width: 48,
-        height: 48,
-        borderRadius: 12,
+        width: 44,
+        height: 44,
+        borderRadius: 10,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: card.glow,
-        border: `1px solid ${card.color}30`,
+        background: `${area.accent}10`,
+        border: `1px solid ${area.accent}20`,
         marginBottom: 18,
       }}>
-        <Icon size={22} style={{ color: card.color }} />
+        <Icon size={20} style={{ color: area.accent }} />
       </div>
 
-      <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: 10, color: '#e2e8f0' }}>
-        {card.title}
+      <h3 style={{
+        fontSize: '1rem',
+        fontWeight: 600,
+        marginBottom: 10,
+        color: 'var(--text-primary)',
+      }}>
+        {area.title}
       </h3>
-      <p style={{ color: '#64748b', fontSize: '0.875rem', lineHeight: 1.7 }}>
-        {card.description}
+      <p style={{
+        color: 'var(--text-secondary)',
+        fontSize: '0.875rem',
+        lineHeight: 1.7,
+      }}>
+        {area.description}
       </p>
     </motion.div>
   );
@@ -114,81 +113,152 @@ function Card({ card, index }) {
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="about" style={{ padding: '100px 24px', maxWidth: 1200, margin: '0 auto' }}>
+    <section id="about" style={{ padding: '120px 24px', maxWidth: 1200, margin: '0 auto' }}>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        style={{ marginBottom: 70 }}
+        transition={{ duration: 0.6 }}
+        style={{ marginBottom: 64 }}
       >
-        <p className="section-tag" style={{ marginBottom: 16 }}>About Me</p>
-        <h2 className="section-title" style={{ marginBottom: 24 }}>
-          <span style={{ color: '#e2e8f0' }}>Crafting the </span>
-          <span className="text-gradient">Future</span>
-          <span style={{ color: '#e2e8f0' }}>, one commit at a time.</span>
+        <p className="section-tag" style={{ marginBottom: 14 }}>About Me</p>
+        <h2 className="section-title" style={{ marginBottom: 20 }}>
+          Engineering secure software,{' '}
+          <span className="text-gradient">one commit at a time.</span>
         </h2>
-        <p style={{ color: '#64748b', fontSize: '1.05rem', maxWidth: 680, lineHeight: 1.8 }}>
-          I'm a passionate developer at the intersection of <span style={{ color: '#00d4ff' }}>artificial intelligence</span> and
-          full-stack engineering. I love turning complex problems into elegant, performant solutions
-          and shipping products that people actually use.
+        <p style={{
+          color: 'var(--text-secondary)',
+          fontSize: '1.05rem',
+          maxWidth: 640,
+          lineHeight: 1.8,
+        }}>
+          I am a <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Software Engineer</span> passionate about the intersection of{' '}
+          <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>cybersecurity</span> and{' '}
+          <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>full-stack development</span>.
+          I focus on architecting reliable systems, writing maintainable code, and solving complex
+          technical challenges.
         </p>
       </motion.div>
 
-      {/* Currently Building Banner */}
+      {/* Journey Timeline */}
       <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="glass neon-border"
+        initial={{ opacity: 0, y: 24 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.15 }}
+        className="card"
         style={{
-          borderRadius: 12,
-          padding: '18px 24px',
-          marginBottom: 60,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 16,
-          flexWrap: 'wrap',
+          padding: '32px',
+          marginBottom: 48,
         }}
       >
-        <span className="font-mono" style={{ color: '#39ff14', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-          {'// CURRENTLY BUILDING:'}
-        </span>
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-          {['🤖 AI-Powered SaaS Platform', '🔐 Secure Auth System', '📊 ML Pipeline'].map((item, i) => (
-            <span
-              key={i}
-              className="font-mono"
-              style={{
-                color: '#00d4ff',
-                fontSize: '0.82rem',
-                padding: '4px 12px',
-                background: 'rgba(0,212,255,0.08)',
-                borderRadius: 6,
-                border: '1px solid rgba(0,212,255,0.15)',
-              }}
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#39ff14', boxShadow: '0 0 8px #39ff14' }} />
-          <span className="font-mono" style={{ color: '#39ff14', fontSize: '0.72rem' }}>LIVE</span>
+        <h3 style={{
+          fontSize: '0.9rem',
+          fontWeight: 600,
+          color: 'var(--text-primary)',
+          marginBottom: 28,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}>
+          <span style={{
+            width: 6,
+            height: 6,
+            borderRadius: '50%',
+            background: 'var(--accent-primary)',
+            display: 'inline-block',
+          }} />
+          My Journey
+        </h3>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {journeyItems.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  gap: 20,
+                  paddingBottom: i < journeyItems.length - 1 ? 28 : 0,
+                  position: 'relative',
+                }}
+              >
+                {/* Timeline line */}
+                {i < journeyItems.length - 1 && (
+                  <div style={{
+                    position: 'absolute',
+                    left: 19,
+                    top: 40,
+                    bottom: 0,
+                    width: 1,
+                    background: 'var(--border-default)',
+                  }} />
+                )}
+
+                {/* Dot */}
+                <div style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  background: 'var(--bg-secondary)',
+                  border: '1px solid var(--border-default)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  position: 'relative',
+                  zIndex: 1,
+                }}>
+                  <Icon size={16} style={{ color: 'var(--accent-primary)' }} />
+                </div>
+
+                <div style={{ flex: 1, paddingTop: 2 }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    marginBottom: 6,
+                    flexWrap: 'wrap',
+                  }}>
+                    <span style={{
+                      fontWeight: 600,
+                      fontSize: '0.95rem',
+                      color: 'var(--text-primary)',
+                    }}>
+                      {item.title}
+                    </span>
+                    <span className="font-mono" style={{
+                      color: 'var(--text-muted)',
+                      fontSize: '0.72rem',
+                    }}>
+                      {item.year}
+                    </span>
+                  </div>
+                  <p style={{
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.85rem',
+                    lineHeight: 1.7,
+                  }}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </motion.div>
 
-      {/* Cards grid */}
+      {/* Focus areas grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-        gap: 24,
+        gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+        gap: 16,
       }}>
-        {cards.map((card, i) => (
-          <Card key={card.title} card={card} index={i} />
+        {focusAreas.map((area, i) => (
+          <FocusCard key={area.title} area={area} index={i} />
         ))}
       </div>
     </section>

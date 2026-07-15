@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import { Terminal, ChevronRight } from 'lucide-react';
 
 const lines = [
-  { delay: 0, text: '> Booting developer environment...', color: '#94a3b8' },
-  { delay: 0.6, text: '> Loading modules: [AI/ML, FullStack, Security]', color: '#00d4ff' },
-  { delay: 1.2, text: '> Initializing neural networks... ✓', color: '#06ffa5' },
-  { delay: 1.8, text: '> Connecting to GitHub... ✓', color: '#06ffa5' },
-  { delay: 2.4, text: '> Building portfolio interface...', color: '#7c3aed' },
-  { delay: 3.0, text: '> All systems operational.', color: '#39ff14' },
-  { delay: 3.4, text: '> Welcome to my portfolio. 🚀', color: '#ffffff' },
+  { delay: 0, text: 'Initializing secure environment...', color: 'var(--text-secondary)' },
+  { delay: 0.6, text: 'Loading modules: [Security, Infrastructure, Core]', color: 'var(--accent-primary)' },
+  { delay: 1.2, text: 'Initializing threat detection... ✓', color: 'var(--color-success)' },
+  { delay: 1.8, text: 'Establishing encrypted connection... ✓', color: 'var(--color-success)' },
+  { delay: 2.4, text: 'Building deployment interface...', color: 'var(--accent-secondary)' },
+  { delay: 3.0, text: 'All systems operational.', color: 'var(--color-success)' },
+  { delay: 3.4, text: 'Access granted.', color: 'var(--text-primary)' },
 ];
 
 export default function TerminalIntro({ onComplete }) {
@@ -32,8 +32,8 @@ export default function TerminalIntro({ onComplete }) {
 
   return (
     <motion.div
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.4 }}
       style={{
         position: 'fixed',
         inset: 0,
@@ -47,10 +47,14 @@ export default function TerminalIntro({ onComplete }) {
     >
       <motion.div
         className="terminal-window"
-        initial={{ opacity: 0, scale: 0.9, y: 40 }}
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, type: 'spring' }}
-        style={{ width: '100%', maxWidth: 680, boxShadow: '0 0 60px rgba(0,212,255,0.15)' }}
+        transition={{ duration: 0.4, type: 'spring', stiffness: 300, damping: 30 }}
+        style={{
+          width: '100%',
+          maxWidth: 620,
+          boxShadow: 'var(--shadow-xl)',
+        }}
       >
         {/* Terminal Header */}
         <div className="terminal-header">
@@ -58,39 +62,39 @@ export default function TerminalIntro({ onComplete }) {
           <div className="terminal-dot" style={{ background: '#febc2e' }} />
           <div className="terminal-dot" style={{ background: '#28c840' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 12 }}>
-            <Terminal size={14} style={{ color: '#00d4ff' }} />
-            <span className="font-mono" style={{ color: '#475569', fontSize: '0.75rem' }}>
-              portfolio — bash — 80×24
+            <Terminal size={13} style={{ color: 'var(--text-muted)' }} />
+            <span className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+              portfolio — zsh — 80×24
             </span>
           </div>
         </div>
 
         {/* Terminal Body */}
-        <div style={{ padding: '24px', minHeight: 240 }}>
+        <div style={{ padding: '20px 24px', minHeight: 220 }}>
           {lines.map((line, i) => (
             visibleLines.includes(i) ? (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.25 }}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  marginBottom: 10,
+                  marginBottom: 8,
                 }}
               >
-                <ChevronRight size={12} style={{ color: '#00d4ff', flexShrink: 0 }} />
+                <ChevronRight size={11} style={{ color: 'var(--accent-primary)', flexShrink: 0 }} />
                 <span
                   className="font-mono"
                   style={{
                     color: line.color,
-                    fontSize: '0.85rem',
+                    fontSize: '0.82rem',
                     lineHeight: 1.5,
                   }}
                 >
-                  {line.text.replace('> ', '')}
+                  {line.text}
                 </span>
               </motion.div>
             ) : null
@@ -99,8 +103,8 @@ export default function TerminalIntro({ onComplete }) {
           {/* Blinking cursor */}
           {!done && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <ChevronRight size={12} style={{ color: '#00d4ff' }} />
-              <span className="typing-cursor" style={{ width: '8px', height: '14px' }} />
+              <ChevronRight size={11} style={{ color: 'var(--accent-primary)' }} />
+              <span className="typing-cursor" style={{ width: '7px', height: '13px' }} />
             </div>
           )}
 
@@ -108,14 +112,14 @@ export default function TerminalIntro({ onComplete }) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              style={{ marginTop: 16, textAlign: 'center' }}
+              style={{ marginTop: 14, textAlign: 'center' }}
             >
               <div
                 className="font-mono"
                 style={{
-                  color: '#39ff14',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.2em',
+                  color: 'var(--text-muted)',
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                 }}
               >
