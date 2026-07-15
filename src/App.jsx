@@ -2,24 +2,22 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Global UI
-import {
-  ScrollProgress,
-  LoadingScreen,
-  CommandPalette,
-} from './components/UIComponents';
+import { ScrollProgress, LoadingScreen, CommandPalette } from './components/UIComponents';
 import Navbar from './components/Navbar';
 import ParticleNetwork from './components/3d/ParticleNetwork';
 
+// Intro & Hero
 import TerminalIntro from './sections/TerminalIntro';
 import Hero from './sections/Hero';
-import About from './sections/About';
 
-// Lazy-loaded Sections (Below the fold)
+// Lazy-loaded Premium Sections
+const Dashboard = lazy(() => import('./sections/Dashboard'));
 const Skills = lazy(() => import('./sections/Skills'));
 const Projects = lazy(() => import('./sections/Projects'));
+const AIAnalytics = lazy(() => import('./sections/AIAnalytics'));
+const Cybersecurity = lazy(() => import('./sections/Cybersecurity'));
 const Experience = lazy(() => import('./sections/Experience'));
 const Certifications = lazy(() => import('./sections/Certifications'));
-const Stats = lazy(() => import('./sections/Stats'));
 const Contact = lazy(() => import('./sections/Contact'));
 const Footer = lazy(() => import('./sections/Footer'));
 
@@ -44,10 +42,12 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className="grid-bg" style={{ minHeight: '100vh', position: 'relative' }}>
+      {/* 3D Background */}
+      <ParticleNetwork />
+
       {/* Always-on overlays */}
       <ScrollProgress />
-      <ParticleNetwork />
       <CommandPalette isOpen={cmdOpen} onClose={() => setCmdOpen(false)} />
 
       <AnimatePresence mode="wait">
@@ -68,15 +68,16 @@ export default function App() {
           >
             <Navbar onOpenPalette={() => setCmdOpen(true)} />
 
-            <main style={{ position: 'relative', zIndex: 1 }}>
+            <main style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto', paddingBottom: '100px' }}>
               <Hero />
-              <About />
               <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+                <Dashboard />
                 <Skills />
                 <Projects />
+                <AIAnalytics />
+                <Cybersecurity />
                 <Experience />
                 <Certifications />
-                <Stats />
                 <Contact />
               </Suspense>
             </main>
@@ -87,6 +88,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }

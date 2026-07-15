@@ -24,90 +24,42 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{ position: 'relative' }}>
+    <footer style={{ position: 'relative', marginTop: 80 }}>
       {/* Top divider */}
-      <div style={{
-        height: 1,
-        background: 'var(--border-default)',
-      }} />
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, var(--border-default), transparent)' }} />
 
-      <div style={{
-        background: 'var(--bg-secondary)',
-        padding: '40px 24px 28px',
-      }}>
+      <div style={{ padding: '60px 24px 32px', background: 'var(--bg-primary)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 32,
-            justifyContent: 'space-between',
-            marginBottom: 36,
-            alignItems: 'flex-start',
-          }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 48, marginBottom: 64 }}>
             {/* Brand */}
-            <div style={{ maxWidth: 280 }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                marginBottom: 12,
-              }}>
-                <div style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  background: 'var(--accent-primary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <Terminal size={14} style={{ color: 'white' }} />
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+                <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(59,130,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Terminal size={20} style={{ color: 'var(--accent-primary)' }} />
                 </div>
-                <span style={{
-                  fontWeight: 700,
-                  fontSize: '0.95rem',
-                  letterSpacing: '-0.02em',
-                  color: 'var(--text-primary)',
-                }}>
+                <span style={{ fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
                   Abhay<span style={{ color: 'var(--accent-primary)' }}>.dev</span>
                 </span>
               </div>
-              <p style={{
-                color: 'var(--text-muted)',
-                fontSize: '0.82rem',
-                lineHeight: 1.7,
-              }}>
-                Building secure systems and shipping scalable products.
-                Software Engineer & Cybersecurity Enthusiast.
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 320 }}>
+                Building secure systems and shipping scalable products. Software Engineer & Cybersecurity Enthusiast.
               </p>
             </div>
 
             {/* Nav links */}
             <div>
-              <h4 className="font-mono" style={{
-                color: 'var(--text-muted)',
-                fontSize: '0.68rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                marginBottom: 14,
-              }}>
+              <h4 className="font-mono" style={{ color: 'var(--text-primary)', fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 20 }}>
                 Navigation
               </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 {links.map(l => (
                   <a
-                    key={l.label}
-                    href={l.href}
+                    key={l.label} href={l.href}
                     onClick={e => {
                       e.preventDefault();
                       document.querySelector(l.href)?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    style={{
-                      color: 'var(--text-secondary)',
-                      textDecoration: 'none',
-                      fontSize: '0.85rem',
-                      transition: 'color 0.2s ease',
-                    }}
+                    style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.95rem', transition: 'color 0.2s ease', padding: '4px 0' }}
                     onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
                     onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
                   >
@@ -119,48 +71,32 @@ export default function Footer() {
 
             {/* Social links */}
             <div>
-              <h4 className="font-mono" style={{
-                color: 'var(--text-muted)',
-                fontSize: '0.68rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                marginBottom: 14,
-              }}>
+              <h4 className="font-mono" style={{ color: 'var(--text-primary)', fontSize: '0.85rem', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 20 }}>
                 Connect
               </h4>
-              <div style={{ display: 'flex', gap: 8 }}>
+              <div style={{ display: 'flex', gap: 12 }}>
                 {socials.map(s => {
                   const Icon = s.icon;
                   return (
                     <a
-                      key={s.label}
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={s.label}
-                      aria-label={s.label}
+                      key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" title={s.label} aria-label={s.label}
                       style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 8,
-                        border: '1px solid var(--border-default)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--text-muted)',
-                        textDecoration: 'none',
-                        transition: 'all 0.2s ease',
+                        width: 44, height: 44, borderRadius: 12, border: '1px solid var(--border-default)',
+                        background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        color: 'var(--text-secondary)', textDecoration: 'none', transition: 'all 0.2s ease',
                       }}
                       onMouseEnter={e => {
                         e.currentTarget.style.borderColor = 'var(--border-hover)';
                         e.currentTarget.style.color = 'var(--text-primary)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
                       }}
                       onMouseLeave={e => {
                         e.currentTarget.style.borderColor = 'var(--border-default)';
-                        e.currentTarget.style.color = 'var(--text-muted)';
+                        e.currentTarget.style.color = 'var(--text-secondary)';
+                        e.currentTarget.style.transform = 'translateY(0)';
                       }}
                     >
-                      <Icon size={14} />
+                      <Icon size={18} />
                     </a>
                   );
                 })}
@@ -169,43 +105,19 @@ export default function Footer() {
           </div>
 
           {/* Bottom bar */}
-          <div style={{
-            height: 1,
-            background: 'var(--border-default)',
-            marginBottom: 20,
-          }} />
+          <div style={{ height: 1, background: 'var(--border-default)', marginBottom: 24 }} />
 
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 16,
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <p className="font-mono" style={{
-              color: 'var(--text-muted)',
-              fontSize: '0.7rem',
-            }}>
-              © {year} Abhay Singh. Built with React.
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'space-between', alignItems: 'center' }}>
+            <p className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
+              © {year} Abhay Singh. All rights reserved.
             </p>
 
-            {/* Back to top */}
             <button
-              onClick={scrollToTop}
-              aria-label="Back to top"
+              onClick={scrollToTop} aria-label="Back to top"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                padding: '6px 12px',
-                borderRadius: 8,
-                border: '1px solid var(--border-default)',
-                background: 'transparent',
-                color: 'var(--text-muted)',
-                cursor: 'pointer',
-                fontSize: '0.72rem',
-                fontFamily: 'var(--font-mono)',
-                transition: 'all 0.2s ease',
+                display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 20,
+                border: '1px solid var(--border-default)', background: 'rgba(255,255,255,0.03)', color: 'var(--text-secondary)',
+                cursor: 'pointer', fontSize: '0.85rem', fontFamily: 'var(--font-mono)', transition: 'all 0.2s ease',
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = 'var(--border-hover)';
@@ -213,10 +125,10 @@ export default function Footer() {
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.borderColor = 'var(--border-default)';
-                e.currentTarget.style.color = 'var(--text-muted)';
+                e.currentTarget.style.color = 'var(--text-secondary)';
               }}
             >
-              <ArrowUp size={12} />
+              <ArrowUp size={14} />
               Back to top
             </button>
           </div>

@@ -1,10 +1,10 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Award, ExternalLink, Calendar } from 'lucide-react';
+import { Award, ExternalLink, Calendar, CheckCircle } from 'lucide-react';
 
 const certifications = [
   {
-    title: 'AWS Cloud Practitioner',
+    title: 'AWS Certified Cloud Practitioner',
     issuer: 'Amazon Web Services',
     date: '2023',
     description: 'Validated expertise in cloud architecture, IAM access management, and securing core AWS services.',
@@ -38,114 +38,38 @@ function CertCard({ cert, index }) {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="card card-interactive"
-      style={{
-        padding: '24px',
-        display: 'flex',
-        gap: 18,
-        alignItems: 'flex-start',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="glass-card card-interactive"
+      style={{ padding: 32, position: 'relative', overflow: 'hidden' }}
     >
-      {/* Accent line */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: 3,
-        height: '100%',
-        background: cert.accent,
-        borderRadius: '0 2px 2px 0',
-      }} />
-
-      {/* Icon */}
-      <div style={{
-        width: 44,
-        height: 44,
-        borderRadius: 10,
-        background: `${cert.accent}10`,
-        border: `1px solid ${cert.accent}18`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-      }}>
-        <Award size={20} style={{ color: cert.accent }} />
-      </div>
-
-      {/* Content */}
-      <div style={{ flex: 1 }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 8,
-          marginBottom: 6,
-        }}>
-          <h3 style={{
-            fontSize: '0.95rem',
-            fontWeight: 600,
-            color: 'var(--text-primary)',
-          }}>
-            {cert.title}
-          </h3>
-          {cert.verifyUrl && cert.verifyUrl !== '#' && (
-            <a
-              href={cert.verifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Verify ${cert.title} certification`}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 4,
-                color: cert.accent,
-                fontSize: '0.75rem',
-                textDecoration: 'none',
-                fontWeight: 500,
-              }}
-            >
-              Verify <ExternalLink size={11} />
-            </a>
-          )}
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ width: 56, height: 56, borderRadius: 16, background: `${cert.accent}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: `0 0 20px ${cert.accent}20` }}>
+          <Award size={28} style={{ color: cert.accent }} />
         </div>
+        
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: 8, flexWrap: 'wrap' }}>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-primary)' }}>{cert.title}</h3>
+            {cert.verifyUrl !== '#' && (
+              <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 6, color: cert.accent, fontSize: '0.8rem', textDecoration: 'none', fontWeight: 500, padding: '4px 12px', background: `${cert.accent}10`, borderRadius: 20 }}>
+                Verify <ExternalLink size={14} />
+              </a>
+            )}
+          </div>
 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          marginBottom: 8,
-        }}>
-          <span style={{
-            fontSize: '0.82rem',
-            color: 'var(--text-secondary)',
-            fontWeight: 500,
-          }}>
-            {cert.issuer}
-          </span>
-          <span style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 4,
-            color: 'var(--text-muted)',
-            fontSize: '0.72rem',
-            fontFamily: 'var(--font-mono)',
-          }}>
-            <Calendar size={11} />
-            {cert.date}
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <CheckCircle size={14} color="var(--color-success)" />
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{cert.issuer}</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-muted)' }}>
+              <Calendar size={14} />
+              <span className="font-mono" style={{ fontSize: '0.8rem' }}>{cert.date}</span>
+            </div>
+          </div>
+
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>{cert.description}</p>
         </div>
-
-        <p style={{
-          color: 'var(--text-secondary)',
-          fontSize: '0.82rem',
-          lineHeight: 1.7,
-        }}>
-          {cert.description}
-        </p>
       </div>
     </motion.div>
   );
@@ -156,38 +80,27 @@ export default function Certifications() {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="certifications" style={{ padding: '120px 24px' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto' }}>
+    <section id="certifications" style={{ padding: '120px 24px', position: 'relative' }}>
+      <div style={{ maxWidth: 1000, margin: '0 auto' }}>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: 'center', marginBottom: 56 }}
+          style={{ marginBottom: 56 }}
         >
-          <p className="section-tag" style={{ justifyContent: 'center', marginBottom: 14 }}>
-            Credentials
-          </p>
-          <h2 className="section-title" style={{ marginBottom: 18 }}>
-            Certifications &{' '}
-            <span className="text-gradient">Credentials</span>
-          </h2>
-          <p style={{
-            color: 'var(--text-secondary)',
-            maxWidth: 460,
-            margin: '0 auto',
-            lineHeight: 1.7,
-            fontSize: '0.95rem',
-          }}>
-            Professional certifications that validate my technical competencies.
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(59,130,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Award size={20} color="var(--accent-primary)" />
+            </div>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)' }}>Verified Credentials</h2>
+          </div>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: 600, lineHeight: 1.6, fontSize: '1rem' }}>
+            Professional certifications and validations of technical expertise.
           </p>
         </motion.div>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 14,
-        }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
           {certifications.map((cert, i) => (
             <CertCard key={cert.title} cert={cert} index={i} />
           ))}

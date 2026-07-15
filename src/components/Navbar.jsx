@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Menu, X, Command } from 'lucide-react';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
+  { label: 'Dashboard', href: '#dashboard' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Analytics', href: '#analytics' },
+  { label: 'Security', href: '#cybersecurity' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Stats', href: '#stats' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -58,10 +59,11 @@ export default function Navbar({ onOpenPalette }) {
           padding: '0 24px',
           transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
           ...(scrolled ? {
-            background: 'rgba(9, 9, 11, 0.85)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+            background: 'rgba(255, 255, 255, 0.03)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
           } : {}),
         }}
       >

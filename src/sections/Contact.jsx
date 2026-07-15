@@ -22,8 +22,15 @@ export default function Contact() {
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setSending(true);
+    // Simulate form submission
+    setTimeout(() => {
+      setSending(false);
+      setSent(true);
+      setForm({ name: '', email: '', message: '' });
+    }, 1500);
   };
 
   const copyEmail = async () => {
@@ -32,7 +39,6 @@ export default function Contact() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback
       const el = document.createElement('textarea');
       el.value = EMAIL;
       document.body.appendChild(el);
@@ -45,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding: '120px 24px' }}>
+    <section id="contact" style={{ padding: '120px 24px', position: 'relative' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <motion.div
           ref={ref}
@@ -54,188 +60,76 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: 'center', marginBottom: 56 }}
         >
-          <p className="section-tag" style={{ justifyContent: 'center', marginBottom: 14 }}>
-            Let's Connect
-          </p>
-          <h2 className="section-title" style={{ marginBottom: 18 }}>
-            Get In{' '}
-            <span className="text-gradient">Touch</span>
-          </h2>
-          <p style={{
-            color: 'var(--text-secondary)',
-            maxWidth: 480,
-            margin: '0 auto',
-            lineHeight: 1.7,
-            fontSize: '0.95rem',
-          }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: 16 }}>
+            <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(59,130,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <MessageSquare size={20} color="var(--accent-primary)" />
+            </div>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Get In Touch</h2>
+          </div>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto', lineHeight: 1.7, fontSize: '1.05rem' }}>
             Let's build secure, scalable solutions together. Reach out for collaborations or opportunities.
           </p>
         </motion.div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-          gap: 24,
-          alignItems: 'start',
-        }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 32, alignItems: 'start' }}>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.15 }}
+            className="glass-panel"
+            style={{ padding: 40 }}
           >
-            <div className="card" style={{ padding: '32px', position: 'relative', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
-                <MessageSquare size={16} style={{ color: 'var(--accent-primary)' }} />
-                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                  Send a Message
-                </h3>
-              </div>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 24 }}>Send a Message</h3>
 
-              {sent ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  style={{
-                    textAlign: 'center',
-                    padding: '32px',
-                    background: 'rgba(34, 197, 94, 0.05)',
-                    border: '1px solid rgba(34, 197, 94, 0.15)',
-                    borderRadius: 12,
-                  }}
+            {sent ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                style={{ textAlign: 'center', padding: '40px', background: 'rgba(34, 197, 94, 0.05)', border: '1px solid rgba(34, 197, 94, 0.15)', borderRadius: 16 }}
+              >
+                <Check size={32} style={{ color: 'var(--color-success)', margin: '0 auto 16px', display: 'block' }} />
+                <p style={{ color: 'var(--color-success)', fontWeight: 600, fontSize: '1.1rem' }}>Message Sent!</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: 8 }}>I'll get back to you within 24 hours.</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <div>
+                  <label className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', display: 'block', marginBottom: 8 }}>Name</label>
+                  <input
+                    name="name" value={form.name} onChange={handleChange} required type="text" placeholder="Your Name"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: 12, fontSize: '0.95rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', outline: 'none' }}
+                  />
+                </div>
+
+                <div>
+                  <label className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', display: 'block', marginBottom: 8 }}>Email</label>
+                  <input
+                    name="email" value={form.email} onChange={handleChange} required type="email" placeholder="you@example.com"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: 12, fontSize: '0.95rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', outline: 'none' }}
+                  />
+                </div>
+
+                <div>
+                  <label className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', display: 'block', marginBottom: 8 }}>Message</label>
+                  <textarea
+                    name="message" value={form.message} onChange={handleChange} required rows={5} placeholder="What's on your mind?"
+                    style={{ width: '100%', padding: '12px 16px', borderRadius: 12, fontSize: '0.95rem', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-default)', color: 'var(--text-primary)', resize: 'vertical', minHeight: 120, outline: 'none' }}
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  className="btn-primary"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={sending}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '14px', fontSize: '1rem', width: '100%', marginTop: 8 }}
                 >
-                  <Check size={28} style={{ color: 'var(--color-success)', margin: '0 auto 12px', display: 'block' }} />
-                  <p style={{ color: 'var(--color-success)', fontWeight: 600, fontSize: '0.95rem' }}>Message Sent!</p>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: 6 }}>
-                    I'll get back to you within 24 hours.
-                  </p>
-                </motion.div>
-              ) : (
-                <form
-                  action={`https://formsubmit.co/${EMAIL}`}
-                  method="POST"
-                  onSubmit={handleSubmit}
-                  style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
-                >
-                  <input type="hidden" name="_subject" value="New message from Portfolio!" />
-                  <input type="hidden" name="_captcha" value="false" />
-
-                  <div>
-                    <label className="font-mono" htmlFor="contact-name" style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '0.7rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                      marginBottom: 6,
-                    }}>
-                      Name
-                    </label>
-                    <input
-                      id="contact-name"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      autoComplete="name"
-                      type="text"
-                      placeholder="Your Name"
-                      className="form-input"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: 8, fontSize: '0.88rem' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="font-mono" htmlFor="contact-email" style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '0.7rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                      marginBottom: 6,
-                    }}>
-                      Email
-                    </label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      autoComplete="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      className="form-input"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: 8, fontSize: '0.88rem' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="font-mono" htmlFor="contact-message" style={{
-                      color: 'var(--text-muted)',
-                      fontSize: '0.7rem',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      display: 'block',
-                      marginBottom: 6,
-                    }}>
-                      Message
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      autoComplete="off"
-                      rows={5}
-                      placeholder="What's on your mind?"
-                      className="form-input"
-                      style={{ width: '100%', padding: '10px 14px', borderRadius: 8, fontSize: '0.88rem', resize: 'vertical', minHeight: 120 }}
-                    />
-                  </div>
-
-                  <motion.button
-                    type="submit"
-                    className="btn-primary"
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    disabled={sending}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 8,
-                      width: '100%',
-                      opacity: sending ? 0.7 : 1,
-                    }}
-                  >
-                    {sending ? (
-                      <>
-                        <motion.span
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
-                          style={{
-                            display: 'inline-block',
-                            width: 14,
-                            height: 14,
-                            border: '2px solid rgba(255,255,255,0.3)',
-                            borderTop: '2px solid white',
-                            borderRadius: '50%',
-                          }}
-                        />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={15} />
-                        Send Message
-                      </>
-                    )}
-                  </motion.button>
-                </form>
-              )}
-            </div>
+                  {sending ? 'Sending...' : <><Send size={18} /> Send Message</>}
+                </motion.button>
+              </form>
+            )}
           </motion.div>
 
           {/* Right side: Info + Social */}
@@ -243,62 +137,33 @@ export default function Contact() {
             initial={{ opacity: 0, x: 20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
           >
-            {/* Location + Availability */}
-            <div className="card" style={{ padding: '20px', display: 'flex', alignItems: 'center', gap: 14 }}>
-              <div style={{
-                width: 40,
-                height: 40,
-                borderRadius: 10,
-                background: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.15)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <MapPin size={16} style={{ color: 'var(--accent-primary)' }} />
+            {/* Location */}
+            <div className="glass-card" style={{ padding: 24, display: 'flex', alignItems: 'center', gap: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(59, 130, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <MapPin size={24} style={{ color: 'var(--accent-primary)' }} />
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.88rem' }}>Based in India</div>
-                <div style={{ color: 'var(--text-secondary)', fontSize: '0.78rem', marginTop: 2 }}>Open to Remote Opportunities</div>
+                <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem' }}>Based in India</div>
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: 4 }}>Open to Remote Opportunities</div>
               </div>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5,
-                padding: '4px 10px',
-                borderRadius: 20,
-                background: 'rgba(34, 197, 94, 0.08)',
-                border: '1px solid rgba(34, 197, 94, 0.15)',
-              }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-success)', display: 'inline-block' }} />
-                <span className="font-mono" style={{ color: 'var(--color-success)', fontSize: '0.68rem' }}>Available</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 12px', borderRadius: 20, background: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.2)' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--color-success)' }} />
+                <span className="font-mono" style={{ color: 'var(--color-success)', fontSize: '0.75rem' }}>Available</span>
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
               <motion.button
                 onClick={copyEmail}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="card"
-                style={{
-                  padding: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  cursor: 'pointer',
-                  color: copied ? 'var(--color-success)' : 'var(--text-secondary)',
-                  fontSize: '0.82rem',
-                  fontWeight: 500,
-                  fontFamily: 'var(--font-sans)',
-                  transition: 'all 0.2s ease',
-                }}
+                className="glass-card card-interactive"
+                style={{ padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, cursor: 'pointer', color: copied ? 'var(--color-success)' : 'var(--text-secondary)', fontSize: '0.95rem', fontWeight: 500 }}
               >
-                {copied ? <Check size={15} /> : <Copy size={15} />}
+                {copied ? <Check size={18} /> : <Copy size={18} />}
                 {copied ? 'Copied!' : 'Copy Email'}
               </motion.button>
 
@@ -307,69 +172,35 @@ export default function Contact() {
                 download
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="card"
-                style={{
-                  padding: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  color: 'var(--text-secondary)',
-                  textDecoration: 'none',
-                  fontSize: '0.82rem',
-                  fontWeight: 500,
-                  transition: 'all 0.2s ease',
-                }}
+                className="glass-card card-interactive"
+                style={{ padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 500 }}
               >
-                <Download size={15} />
-                Resume
+                <Download size={18} /> Resume
               </motion.a>
             </div>
 
             {/* Social cards */}
-            {socials.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <motion.a
-                  key={s.label}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.06 }}
-                  className="card card-interactive"
-                  aria-label={`Visit ${s.label} profile`}
-                  style={{
-                    padding: '16px 20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 14,
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <div style={{
-                    width: 38,
-                    height: 38,
-                    borderRadius: 9,
-                    background: 'var(--bg-secondary)',
-                    border: '1px solid var(--border-default)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                  }}>
-                    <Icon size={16} style={{ color: 'var(--text-secondary)' }} />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.85rem' }}>{s.label}</div>
-                    <div className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.72rem', marginTop: 1 }}>{s.handle}</div>
-                  </div>
-                  <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>↗</div>
-                </motion.a>
-              );
-            })}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              {socials.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <motion.a
+                    key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 16 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+                    className="glass-card card-interactive"
+                    style={{ padding: '24px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, textDecoration: 'none', textAlign: 'center' }}
+                  >
+                    <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-default)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Icon size={20} style={{ color: 'var(--text-primary)' }} />
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{s.label}</div>
+                      <div className="font-mono" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: 4 }}>{s.handle}</div>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>
