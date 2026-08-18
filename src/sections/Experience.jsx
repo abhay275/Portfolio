@@ -4,8 +4,22 @@ import { Award, Trophy, Bot, GitBranch, Zap, Cloud } from 'lucide-react';
 
 const events = [
   {
+    year: 'Jan 2026 – Present',
+    title: '💼 Mobile Application Developer — Freelance',
+    description: [
+      'Developed and deployed web and Android applications using React, Flutter, FastAPI, PostgreSQL, Firebase, and REST APIs.',
+      'Worked with CI/CD workflows, application deployment, environment configuration, monitoring, and production support.',
+      'Supported backend services and API integrations across development and production environments.',
+      'Assisted with deployment workflows, debugging, release activities, and application reliability.',
+      'Coordinated technical deliverables and development workflows to support timely project releases.',
+    ],
+    icon: GitBranch,
+    type: 'Remote',
+    accent: '#22C55E',
+  },
+  {
     year: '2025',
-    title: '🥇 1st Position — ROBORACE (Exuberance 2025)',
+    title: '🥇 1st Position — ROBORACE',
     description: 'Secured 1st Position in the ROBORACE competition during Exuberance 2025.',
     icon: Trophy,
     type: 'Competition',
@@ -13,10 +27,10 @@ const events = [
   },
   {
     year: '2026',
-    title: '🏆 🏆 Hacknovate 7.0 International Hackathon',
+    title: '🏆 Top 10 — Hacknovate 7.0',
     description: 'Selected among the Top 10 Finalists for building an AI-powered solution addressing real-world challenges.',
     icon: Zap,
-    type: '30 Hour international hackathon',
+    type: 'Hackathon',
     accent: '#3B82F6',
   },
   {
@@ -26,14 +40,6 @@ const events = [
     icon: Award,
     type: 'Sports',
     accent: '#9CA3AF',
-  },
-  {
-    year: '2025',
-    title: '💡 Participant — Smart India Hackathon 2025',
-    description: 'Participated in the Smart India Hackathon 2025.',
-    icon: Cloud,
-    type: 'Hackathon',
-    accent: '#06B6D4',
   },
 ];
 
@@ -94,9 +100,15 @@ function TimelineItem({ event, index }) {
           </span>
         </div>
 
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7 }}>
-          {event.description}
-        </p>
+        <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7 }}>
+          {Array.isArray(event.description) ? (
+            <ul style={{ paddingLeft: 20, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {event.description.map((bullet, i) => <li key={i}>{bullet}</li>)}
+            </ul>
+          ) : (
+            <p>{event.description}</p>
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -120,10 +132,10 @@ export default function Experience() {
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(139,92,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Cloud size={20} color="var(--accent-primary)" />
             </div>
-            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)' }}>Achievements</h2>
+            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)' }}>Experience & Achievements</h2>
           </div>
           <p style={{ color: 'var(--text-secondary)', maxWidth: 600, lineHeight: 1.6, fontSize: '1rem' }}>
-            A timeline of hackathons, competitions, and professional growth.
+            A timeline of my professional experience, hackathons, and competitions.
           </p>
         </motion.div>
 

@@ -5,10 +5,10 @@ import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 import Premium3DModel from '../components/3d/Premium3DModel';
 
 const TYPING_WORDS = [
-  'Cybersecurity Enthusiast',
-  'SOC Analyst Aspirant',
-  'Full Stack Developer',
-  'Android Developer',
+  'DevOps & Cloud Engineer',
+  'CI/CD Automation Specialist',
+  'Infrastructure Developer',
+  'Site Reliability Engineer',
 ];
 
 function useTypingEffect(words) {
@@ -144,7 +144,7 @@ export default function Hero() {
           margin: '0 auto 48px',
           lineHeight: 1.7,
         }}>
-          Architecting intelligent systems and secure cloud infrastructure. Merging precision engineering with modern design to build premium digital experiences and enterprise security solutions.
+          Building, deploying, automating, and monitoring reliable software systems. Merging application development with cloud infrastructure to deliver seamless continuous integration and delivery.
         </motion.p>
 
         {/* CTAs */}

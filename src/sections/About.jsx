@@ -1,52 +1,52 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Shield, Code2, Cloud, Brain, BookOpen, Target } from 'lucide-react';
+import { Shield, Code2, Cloud, Brain, BookOpen, Target, Container, GitBranch, Server } from 'lucide-react';
 
 const focusAreas = [
   {
-    icon: Shield,
-    title: 'Cybersecurity',
-    description: 'Implementing threat detection, incident response workflows, and securing systems against advanced attack vectors.',
+    icon: Container,
+    title: 'Containerization',
+    description: 'Creating consistent and reproducible application environments using Docker to ensure seamless execution from development to production.',
     accent: '#3B82F6',
   },
   {
-    icon: Code2,
-    title: 'Full Stack Development',
-    description: 'Architecting end-to-end applications with modern frameworks, focusing on scalable APIs and responsive UIs.',
+    icon: GitBranch,
+    title: 'CI/CD & Automation',
+    description: 'Building robust continuous integration and deployment pipelines to accelerate delivery and enforce software reliability.',
     accent: '#06B6D4',
   },
   {
     icon: Cloud,
-    title: 'Cloud & DevOps',
-    description: 'Deploying highly available infrastructure on cloud platforms with automated CI/CD pipelines and security-first principles.',
+    title: 'Cloud Deployment',
+    description: 'Deploying highly available infrastructure and managing environment configurations across modern cloud platforms.',
     accent: '#22C55E',
   },
   {
-    icon: Brain,
-    title: 'AI & Machine Learning',
-    description: 'Leveraging machine learning for anomaly detection and data analysis to solve complex operational challenges.',
+    icon: Server,
+    title: 'Reliable Backend Services',
+    description: 'Architecting scalable backend systems, robust REST APIs, and integrated database solutions for optimal performance.',
     accent: '#F59E0B',
   },
 ];
 
 const journeyItems = [
   {
-    year: '2022',
-    title: 'Started B.Tech in Computer Science',
-    description: 'Built foundational expertise in data structures, algorithms, and systems design.',
-    icon: BookOpen,
+    year: 'Foundation',
+    title: 'Development Fundamentals',
+    description: 'Built expertise in application development and version control with Git & GitHub.',
+    icon: Code2,
   },
   {
-    year: '2023',
-    title: 'Security Engineering Focus',
-    description: 'Transitioned focus to security engineering, mastering network defense, threat modeling, and secure coding practices.',
-    icon: Shield,
+    year: 'Automation',
+    title: 'Containerization & CI/CD',
+    description: 'Transitioned focus to infrastructure, utilizing Docker and continuous deployment workflows to standardize delivery.',
+    icon: GitBranch,
   },
   {
-    year: '2024',
-    title: 'Shipping Production Systems',
-    description: 'Engineered and deployed production-grade security tooling and web applications, collaborating in national-level technical events.',
-    icon: Target,
+    year: 'Production',
+    title: 'Cloud & Monitoring',
+    description: 'Engineered cloud deployments and implemented active monitoring for reliable production systems.',
+    icon: Cloud,
   },
 ];
 
@@ -92,10 +92,10 @@ export default function About() {
         >
           <p className="section-tag" style={{ marginBottom: 14, justifyContent: 'center' }}>About Me</p>
           <h2 className="section-title" style={{ marginBottom: 20 }}>
-            Engineering secure software, <span className="text-gradient">one commit at a time.</span>
+            Building reliable infrastructure, <span className="text-gradient">one deployment at a time.</span>
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: 680, margin: '0 auto', lineHeight: 1.8 }}>
-            I am a <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Software Engineer</span> passionate about the intersection of <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>cybersecurity</span> and <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>full-stack development</span>. I focus on architecting reliable systems, writing maintainable code, and solving complex technical challenges.
+            I am a <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Computer Science Engineering student</span> focused on <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>DevOps and Cloud Engineering</span>. I enjoy taking applications from development to production through containerization, CI/CD, deployment automation, and monitoring. My development background with <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>FastAPI, Node.js, React, Flutter, PostgreSQL, and Redis</span> helps me understand both the application and infrastructure sides of modern software systems.
           </p>
         </motion.div>
 

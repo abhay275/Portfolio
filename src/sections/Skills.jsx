@@ -4,36 +4,32 @@ import { Code2, Globe, Server, Database, Cloud, Shield, Wrench, Container, Monit
 
 const categories = [
   {
+    title: 'DevOps & Deployment', icon: Container, accent: '#06B6D4',
+    skills: [{ name: 'Docker', level: 75 }, { name: 'CI/CD', level: 70 }, { name: 'App Deployment', level: 80 }, { name: 'Monitoring', level: 65 }]
+  },
+  {
+    title: 'Cloud & Infrastructure', icon: Cloud, accent: '#8B5CF6',
+    skills: [{ name: 'Cloud Fundamentals', level: 75 }, { name: 'Workflows', level: 70 }, { name: 'Backend Services', level: 80 }, { name: 'REST APIs', level: 85 }]
+  },
+  {
     title: 'Programming', icon: Code2, accent: '#3B82F6',
-    skills: [{ name: 'Python', level: 90 }, { name: 'JavaScript', level: 85 }, { name: 'TypeScript', level: 70 }, { name: 'C/C++', level: 65 }]
+    skills: [{ name: 'Python', level: 90 }, { name: 'JavaScript', level: 85 }, { name: 'SQL', level: 75 }, { name: 'Dart / Kotlin', level: 65 }]
   },
   {
-    title: 'Frontend', icon: Globe, accent: '#06B6D4',
-    skills: [{ name: 'React', level: 88 }, { name: 'Next.js', level: 70 }, { name: 'Tailwind CSS', level: 90 }, { name: 'Framer Motion', level: 75 }]
+    title: 'Backend & Frameworks', icon: Server, accent: '#22C55E',
+    skills: [{ name: 'FastAPI', level: 80 }, { name: 'Node.js', level: 82 }, { name: 'React.js', level: 88 }, { name: 'Flutter', level: 75 }]
   },
   {
-    title: 'Backend', icon: Server, accent: '#22C55E',
-    skills: [{ name: 'Node.js', level: 82 }, { name: 'Express.js', level: 80 }, { name: 'FastAPI', level: 72 }, { name: 'GraphQL', level: 55 }]
+    title: 'Databases', icon: Database, accent: '#F59E0B',
+    skills: [{ name: 'PostgreSQL', level: 75 }, { name: 'MongoDB', level: 80 }, { name: 'Firebase', level: 78 }, { name: 'Redis', level: 60 }]
   },
   {
-    title: 'Database', icon: Database, accent: '#F59E0B',
-    skills: [{ name: 'MongoDB', level: 80 }, { name: 'PostgreSQL', level: 65 }, { name: 'Firebase', level: 78 }, { name: 'Redis', level: 50 }]
+    title: 'Developer Tools', icon: Wrench, accent: '#A1A1AA',
+    skills: [{ name: 'Git / GitHub', level: 90 }, { name: 'VS Code', level: 95 }, { name: 'Android Studio', level: 70 }, { name: 'Visual Studio', level: 75 }]
   },
   {
-    title: 'Cloud', icon: Cloud, accent: '#8B5CF6',
-    skills: [{ name: 'AWS', level: 65 }, { name: 'Netlify', level: 85 }, { name: 'Vercel', level: 80 }, { name: 'Cloudflare', level: 60 }]
-  },
-  {
-    title: 'Cybersecurity', icon: Shield, accent: '#EF4444',
-    skills: [{ name: 'Network Security', level: 70 }, { name: 'Threat Detection', level: 68 }, { name: 'Vulnerability Assessment', level: 60 }, { name: 'Secure Coding', level: 72 }]
-  },
-  {
-    title: 'DevOps & Tools', icon: Container, accent: '#06B6D4',
-    skills: [{ name: 'Git / GitHub', level: 90 }, { name: 'Docker', level: 65 }, { name: 'Linux', level: 75 }, { name: 'CI/CD', level: 55 }]
-  },
-  {
-    title: 'OS & Systems', icon: Monitor, accent: '#A1A1AA',
-    skills: [{ name: 'Linux (Ubuntu/Kali)', level: 78 }, { name: 'Windows', level: 85 }, { name: 'macOS', level: 70 }, { name: 'Networking', level: 75 }]
+    title: 'Testing & Engineering', icon: Shield, accent: '#EF4444',
+    skills: [{ name: 'API Testing', level: 85 }, { name: 'Debugging', level: 80 }, { name: 'Manual Testing', level: 75 }, { name: 'App Monitoring', level: 70 }]
   },
 ];
 

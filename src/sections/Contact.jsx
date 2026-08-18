@@ -64,10 +64,10 @@ export default function Contact() {
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(59,130,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <MessageSquare size={20} color="var(--accent-primary)" />
             </div>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)' }}>Get In Touch</h2>
+            <h2 style={{ fontSize: '2.2rem', fontWeight: 700, color: 'var(--text-primary)', textAlign: 'center' }}>Looking for a DevOps / Cloud opportunity?</h2>
           </div>
-          <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto', lineHeight: 1.7, fontSize: '1.05rem' }}>
-            Let's build secure, scalable solutions together. Reach out for collaborations or opportunities.
+          <p style={{ color: 'var(--text-secondary)', maxWidth: 580, margin: '0 auto', lineHeight: 1.7, fontSize: '1.05rem' }}>
+            I'm looking for opportunities where I can contribute to cloud infrastructure, CI/CD automation, application deployment, monitoring, and reliable software delivery. Let's connect!
           </p>
         </motion.div>
 

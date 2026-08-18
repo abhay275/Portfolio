@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import { Terminal, ChevronRight } from 'lucide-react';
 
 const lines = [
-  { delay: 0, text: 'Initializing secure environment...', color: 'var(--text-secondary)' },
-  { delay: 0.6, text: 'Loading modules: [Security, Infrastructure, Core]', color: 'var(--accent-primary)' },
-  { delay: 1.2, text: 'Initializing threat detection... ✓', color: 'var(--color-success)' },
-  { delay: 1.8, text: 'Establishing encrypted connection... ✓', color: 'var(--color-success)' },
-  { delay: 2.4, text: 'Building deployment interface...', color: 'var(--accent-secondary)' },
+  { delay: 0, text: 'Initializing deployment environment...', color: 'var(--text-secondary)' },
+  { delay: 0.6, text: 'Loading modules: [Docker, CI/CD, Infrastructure]', color: 'var(--accent-primary)' },
+  { delay: 1.2, text: 'Verifying container health... ✓', color: 'var(--color-success)' },
+  { delay: 1.8, text: 'Establishing secure backend connection... ✓', color: 'var(--color-success)' },
+  { delay: 2.4, text: 'Automating release pipeline...', color: 'var(--accent-secondary)' },
   { delay: 3.0, text: 'All systems operational.', color: 'var(--color-success)' },
-  { delay: 3.4, text: 'Access granted.', color: 'var(--text-primary)' },
+  { delay: 3.4, text: 'Deployment successful.', color: 'var(--text-primary)' },
 ];
 
 export default function TerminalIntro({ onComplete }) {
