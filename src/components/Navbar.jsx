@@ -104,7 +104,7 @@ export default function Navbar({ onOpenPalette }) {
               letterSpacing: '-0.02em',
               color: 'var(--text-primary)',
             }}>
-              Abhay<span style={{ color: 'var(--accent-primary)' }}>.dev</span>
+              Abhay <span style={{ color: 'var(--accent-primary)' }}>Singh</span>
             </span>
           </a>
 
