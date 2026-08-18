@@ -87,17 +87,11 @@ export default function Navbar({ onOpenPalette }) {
               textDecoration: 'none',
             }}
           >
-            <div style={{
-              width: 32,
-              height: 32,
-              borderRadius: 8,
-              background: 'var(--accent-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <Terminal size={15} style={{ color: 'white' }} />
-            </div>
+            <img 
+              src="/favicon.png" 
+              alt="Logo" 
+              style={{ width: 32, height: 32, borderRadius: 8, objectFit: 'cover' }} 
+            />
             <span style={{
               fontWeight: 700,
               fontSize: '0.95rem',
