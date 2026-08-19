@@ -87,10 +87,10 @@ export default function Navbar({ onOpenPalette }) {
               textDecoration: 'none',
             }}
           >
-            <img 
-              src="/favicon.png" 
-              alt="Logo" 
-              style={{ width: 32, height: 32, borderRadius: 8, objectFit: 'cover' }} 
+            <img
+              src="/favicon.png"
+              alt="Logo"
+              style={{ width: 32, height: 32, borderRadius: 8, objectFit: 'cover' }}
             />
             <span style={{
               fontWeight: 700,
