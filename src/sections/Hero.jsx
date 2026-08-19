@@ -154,7 +154,7 @@ export default function Hero() {
             <ArrowRight size={18} />
           </a>
           <a href="/Abhay-Resume.pdf" download className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none', padding: '14px 32px', fontSize: '1.05rem', borderRadius: 'var(--radius-md)' }}>
-            <FileText size={20} />
+            <Download size={18} />
             Resume
           </a>
         </motion.div>
